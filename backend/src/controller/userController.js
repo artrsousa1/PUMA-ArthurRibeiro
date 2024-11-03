@@ -7,7 +7,7 @@ const userController = {
             const users = await userManager.getAllUsers();
             res.status(200).json({ data: users });
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ error: error.message });
         }
     },
     addUser: async (req, res) => {
@@ -18,10 +18,10 @@ const userController = {
         } catch (error) {
             if(error instanceof PrismaClientKnownRequestError) {
                 if(error.code === 'P2002') {
-                    return res.status(400).json({ message: 'Usuário já cadastrado.'})
+                    return res.status(400).json({ error: 'Usuário já cadastrado.'})
                 }
             }
-            res.status(error.cause).json({ message: error.message });
+            res.status(error.cause).json({ error: error.message });
         }
     },
     deleteUser: async (req, res) => {
@@ -34,10 +34,10 @@ const userController = {
         } catch (error) {
             if(error instanceof PrismaClientKnownRequestError) {
                 if(error.code === 'P2025') {
-                    return res.status(404).json({ message: 'Usuário não encontrado.'})
+                    return res.status(404).json({ error: 'Usuário não encontrado.'})
                 }
             }
-            res.status(500).json({ message: 'Internal server error.' });
+            res.status(500).json({ error: 'Internal server error.' });
         }
     },
     favoriteUser: async (req, res) => {
@@ -48,7 +48,12 @@ const userController = {
                 message: `Usuário ${user} ${action} com sucesso.`
             })
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            if(error instanceof PrismaClientKnownRequestError) {
+                if(error.code === 'P2025') {
+                    return res.status(404).json({ error: 'Usuário não encontrado.'})
+                }
+            }
+            res.status(500).json({ error: error.message });
         }
     }
 }
