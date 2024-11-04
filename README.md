@@ -27,26 +27,20 @@ cd frontend
 npm install
 ```
 
-4. Inicialize o container do banco de dados:
+4. Inicialize o container do banco de dados e execute as migrations:
 ```bash
 # No diretório backend execute:
 # Caso o docker-compose não tenha permissão para criar o volume, execute o comando como sudo ( sudo npm run config)
 npm run config
 ```
-5. Com o container do banco de dados rodando, execute as migrations:
-```bash
-# No diretório backend execute:
-npx prisma migrate deploy
-npx prisma generate
-```
 
-6. Inicialize o backend:
+5. Inicialize o backend:
 ```bash
 # No diretório backend execute:
 npm start
 ```
 
-7. Inicialize o frontend:
+6. Inicialize o frontend:
 ```bash
 # No diretório frontend execute:
 npm run dev
@@ -68,11 +62,17 @@ router.patch('/users/:username/toggle-star', async (req, res) => await userContr
 
 ## Testes
 
-Para rodar os testes, com o container rodando e o backend desligado, execute o comando abaixo:
+Para rodar os testes execute os seguintes comandos:
 
+1. Configuração do ambiente de testes:
 ```bash
 # No diretório backend execute:
-npm test
+npm run config:test
+```
+2. Rodar os testes:
+```bash
+# No diretório backend execute:
+npm run test
 ```
 
 
