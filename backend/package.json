@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {
+    "config": "chmod +x ./config/config.sh && ./config/config.sh",
     "test": "jest --silent",
     "start": "nodemon --watch 'src' src/server.js"
   },
