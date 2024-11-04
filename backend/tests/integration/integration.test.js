@@ -111,8 +111,4 @@ describe('User API integration', () => {
                 expect(response.body.message).toBe(`Usuário ${mockResponse.login} deletado com sucesso.`);
             });
     });
-    it('should not add more then 5 users', async() => {
-        
-    })
-
 })
