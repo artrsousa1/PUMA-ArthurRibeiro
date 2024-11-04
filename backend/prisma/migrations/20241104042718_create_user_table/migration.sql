@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "username" TEXT NOT NULL,
     "picture_url" TEXT NOT NULL,
     "profile_url" TEXT NOT NULL,
