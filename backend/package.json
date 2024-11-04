@@ -4,7 +4,8 @@
   "main": "src/server.js",
   "scripts": {
     "config": "chmod +x ./config/config.sh && ./config/config.sh",
-    "test": "jest --silent",
+    "config:test": "chmod +x ./config/test.sh && ./config/test.sh",
+    "test": "DATABASE_PORT=5433 PORT=8001 jest --silent",
     "start": "nodemon --watch 'src' src/server.js"
   },
   "keywords": [],
